@@ -1,5 +1,7 @@
 # jquery.unveil2
-A very lightweight jQuery plugin to lazy load images
+A very lightweight jQuery plugin to lazy load images.
+
+Based on the original jquery.unveil by [Luis Almeida](http://luis-almeida.github.io/unveil/)
 
 ## Usage
 Use a placeholder image in the src attribute - something to be displayed while the original image loads - and include the actual image source in a "data-src" attribute. If data-src isn't present image will be skipped later.
