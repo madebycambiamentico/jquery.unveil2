@@ -39,15 +39,6 @@
 				return $images;
 			};
 		}
-
-		/*function getDocHeight(){
-			return Math.max(
-				$(document).height(),
-				$window.height(),
-				// For opera:
-				document.documentElement.clientHeight
-			);
-		};*/
 		
 		function unveilTrigger() {
 			// if an image has data-src attribute, unveil it when conditions are met (see below)
