@@ -37,11 +37,7 @@ You can additionally pass a reference object as second argument in *unveil* func
 ```js
 $(function(){
   var refUnveilFn = {};
-  $('selector').unveil({
-    thr : [-500,-500],
-    uclass : "custom",
-    hasEnd : false
-  }, refUnveilFn );
+  $('selector').unveil({ /*options*/ }, refUnveilFn );
 });
 ```
 In the sample code above, *refUnveilFn* will contains:
