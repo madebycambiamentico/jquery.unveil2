@@ -99,7 +99,6 @@
 				var scrollTop = $window.scrollTop();
 				if (lastScrollTop === scrollTop) {
 					raf(loop);
-					return;
 				} else {
 					lastScrollTop = scrollTop;
 					// fire scroll function if scrolls vertically
@@ -107,7 +106,10 @@
 					else $window.off(".unveil");
 				}
 			}
-			$window.on('resize.unveil',function(){raf(loop)});
+			$window.on('resize.unveil',function(){
+				lastScrollTop--; // force loop() to fire unveil function
+				raf(loop);
+			});
 			loop();
 		}
 		else{
