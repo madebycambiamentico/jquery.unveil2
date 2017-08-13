@@ -49,6 +49,7 @@
 			// if an image has data-src attribute, unveil it when conditions are met (see below)
 			var source = $(this).data("src");
 			if (source) {
+				this.onload = function(){oRefSet.callback(this)};
 				this.src = source;
 			}
 		}
