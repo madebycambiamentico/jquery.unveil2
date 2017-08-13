@@ -20,13 +20,15 @@ $(function(){
 ## Options
 Options are passed by as javascript object:
 - *thr* : threshold (upper bound and lower bound in an array). By default, images are only loaded and *unveiled* when the user scrolls to them and they became completely visible on the screen. Negative values of *thr* mean pre-load images which are not yet in viewport. NB - **jquery.unveil2** takes account of big images which are bigger than the wieport.
-- *uclass* : the class which will be added when an image is *unveiled*. Default is "unveiled"
+- *uclass* : the class which will be added when an image is *unveiled*. Default is "unveiled";
+- *lclass* : the class which will be added when an image is *unveiled* and *loaded*. Default is "loaded";
 - *hasEnd* : if **true** (default) the script will stop when all selected images are *unveiled*.
 ```js
 $(function(){
   $('selector').unveil({
     thr : [-500,-500],
-    uclass : "custom",
+    uclass : "customUnveil",
+    lclass : "customLoaded",
     hasEnd : false
   });
 });
@@ -43,13 +45,28 @@ $(function(){
 });
 ```
 In the sample code above, *refUnveilFn* will contains:
-- *options* : function to edit the current options
-- *addImgs* : a function that take a jquery selector (or object) to be merged with the original list of images
+- *options* : function to edit the current options;
+- *addImgs* : a function that take a jquery selector (or object) to be merged with the original list of images;
 - *delImgs* : like *addImgs*, but remove the images from the list istead of adding. It uses a filter function.
 
-Additionally you can pass a *refUnveilFn* object already containing the function ***callback*** which will be fired when an image has been unveiled. The argument is the vanilla image object itself. If no callback is set, than the jquery empty function is used istead.
+You can pass also a *refUnveilFn* object already containing the function ***callback*** which will be fired when an image has been *unveiled and loaded*. The argument is the vanilla image object itself. If no callback is set, than the jquery empty function is used istead.
 
 For further reference see the master code.
+
+## CSS animation
+If you want some animation, don't rely on javascript animation like in 2000, but use css istead!
+Here's a simple example of fade-in on image load:
+```css
+img{
+  visibility:hidden;
+  opacity:0;
+  transition:opacity 0.4;
+}
+img.loaded{
+  visibility:visible
+  opacity:0
+}
+```
 
 ## Notes
 jQuery Unveil 2 has some experimental feature with nice fallback: it uses the *requestAnimationFrame API* to perform an efficient loop. If that API is not implemented than a traditional *setTimeout* over the *scroll event* is used istead, firing every 100ms. The script check the *resize* event too. Images larger than the viewport (exceeding the top and bottom edge of viewport) are unveiled too.
