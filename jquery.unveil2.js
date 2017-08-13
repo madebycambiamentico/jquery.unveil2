@@ -7,6 +7,17 @@
  * https://github.com/madebycambiamentico
  */
 (function(wdw,$) {
+	
+	//simple image data prototype. To prevent future incompatibility it will be called "udata"
+	//small catch: datas should be of only one word (no camel case conversion issue)
+	Image.prototype.udata = document.body.dataset ?
+		function(s){
+			return this.dataset[s];
+		}
+		:
+		function(s){
+			return this.getAttribute('data-'+s);
+		}
 
 	// oRefSet = optional reference object which will contain some useful function and properties:
 	//			options -> update options object. take object. returns options object (see below)
@@ -47,9 +58,12 @@
 		
 		function unveilTrigger() {
 			// if an image has data-src attribute, unveil it when conditions are met (see below)
-			var source = $(this).data("src");
+			var source = this.udata("src");
 			if (source) {
-				this.onload = function(){oRefSet.callback(this)};
+				this.onload = function(){
+					this.className += ' '+options.lclass;
+					oRefSet.callback(this)
+				};
 				this.src = source;
 			}
 		}
