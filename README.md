@@ -64,7 +64,7 @@ img{
 }
 img.loaded{
   visibility:visible
-  opacity:0
+  opacity:1
 }
 ```
 
