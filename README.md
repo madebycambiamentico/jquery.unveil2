@@ -1,4 +1,4 @@
-# jquery.unveil2
+# jQuery Unveil 2
 A very lightweight jQuery plugin to lazy load images.
 
 This plugin boosts performance delaying loading of images in long web pages, because images outside of viewport (visible part of web page) won't be loaded until the user scrolls to them.
