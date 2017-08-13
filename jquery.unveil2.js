@@ -7,24 +7,25 @@
  * https://github.com/madebycambiamentico
  */
 (function(wdw,$) {
-	$(function(){
-	
-	//simple image data prototype. To prevent future incompatibility it will be called "udata"
-	//small catch: datas should be of only one word (no camel case conversion issue)
-	Image.prototype.udata = document.body.dataset ?
-		function(s){
-			return this.dataset[s];
-		}
-		:
-		function(s){
-			return this.getAttribute('data-'+s);
-		}
 
 	// oRefSet = optional reference object which will contain some useful function and properties:
 	//			options -> update options object. take object. returns options object (see below)
 	//			addImgs -> add images to current set. take selector (string or jquery object). returns new set.
 	//			delImgs -> remove images from current set. take selector (string or jquery object). returns new set.
 	$.fn.unveil = function(options, oRefSet) {
+		
+		//simple image data prototype. To prevent future incompatibility it will be called "udata"
+		//small catch: datas should be of only one word (no camel case conversion issue)
+		if (!Image.udata){
+			Image.prototype.udata = document.body.dataset ?
+				function(s){
+					return this.dataset[s];
+				}
+				:
+				function(s){
+					return this.getAttribute('data-'+s);
+				}
+		}
 		
 		var $images = this,			// original set of selected images, for example $('#gallery img.lazy')
 			loaded,					// temp variable. Will contain the images unveiled each scroll event*
@@ -156,5 +157,4 @@
 		return this;
 	};
 	
-	});
 })(window,jQuery);
