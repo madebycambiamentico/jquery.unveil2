@@ -38,6 +38,11 @@
 				$images = $images.not(selector);
 				return $images;
 			};
+			if (!('callback' in oRefSet))
+				oRefSet.callback = $.noop;
+		}
+		else{
+			oRefSet = {callback : $.noop};
 		}
 		
 		function unveilTrigger() {
