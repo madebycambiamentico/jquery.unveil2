@@ -7,6 +7,7 @@
  * https://github.com/madebycambiamentico
  */
 (function(wdw,$) {
+	$(function(){
 	
 	//simple image data prototype. To prevent future incompatibility it will be called "udata"
 	//small catch: datas should be of only one word (no camel case conversion issue)
@@ -154,5 +155,6 @@
 
 		return this;
 	};
-
+	
+	});
 })(window,jQuery);
